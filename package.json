@@ -1,0 +1,35 @@
+{
+  "name": "svelte-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
+  },
+  "devDependencies": {
+    "@internationalized/date": "^3.8.2",
+    "@lucide/svelte": "^0.515.0",
+    "@sveltejs/vite-plugin-svelte": "^6.0.0",
+    "@tsconfig/svelte": "^5.0.4",
+    "@types/node": "^24.2.0",
+    "bits-ui": "^2.9.1",
+    "daisyui": "^5.0.50",
+    "svelte": "^5.35.5",
+    "svelte-check": "^4.2.2",
+    "tailwind-variants": "^1.0.0",
+    "tw-animate-css": "^1.3.6",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "axios": "^1.11.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11"
+  }
+}
