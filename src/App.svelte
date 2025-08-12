@@ -1,18 +1,20 @@
 <script lang="ts">
-    import axios from "axios";
-  import BarcodeScanner from "./components/BarcodeScanner.svelte";
+  import CategorySelect from "./components/CategorySelect.svelte";
   import Sidebar from "./components/Sidebar.svelte";
+
+  let product = $state<any>({
+    sku: '',
+    name: '',
+    sales_label: '',
+    tag_label: ''
+  });
 
   function onSubmit(e: SubmitEvent)
   {
     e.preventDefault();
-    
-    const formData = new FormData(e.target as HTMLFormElement);
-    console.log(formData);
 
-    axios.post('http://127.0.0.1:3000/api/products', formData)
-    .then(({data}) => console.log(data))
-    .catch((e) => console.log(e))
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    console.log(formData);
   }
 </script>
 
@@ -21,27 +23,31 @@
   <Sidebar/>
 
   <main class="w-full">
-    <h1>Création d'un produit</h1>
+    <h1>Fiche produit</h1>
 
-    <form onsubmit={onSubmit}>
-      <BarcodeScanner/>
+    <div class="flex">
+      <form class="flex flex-col" onsubmit={onSubmit}>
+        <CategorySelect/>
 
-      <label class="flex flex-col">
-        <span class="label">Nom</span>
-        <input class="input" type="text" name="name"/>
-      </label>
+        <fieldset>
+          <label class="flex flex-col">
+            <span class="label">Nom</span>
+            <input class="input" type="text" name="name" bind:value={product.name}/>
+          </label>
 
-      <label class="flex flex-col">
-        <span class="label">Libellé de vente</span>
-        <input class="input" type="text" name="sales_label"/>
-      </label>
+          <label class="flex flex-col">
+            <span class="label">Libellé de vente</span>
+            <input class="input" type="text" name="sales_label" bind:value={product.sales_label}/>
+          </label>
 
-      <label class="flex flex-col">
-        <span class="label">Libellé (étiquette)</span>
-        <input class="input" type="text" name="tag_label"/>
-      </label>
+          <label class="flex flex-col">
+            <span class="label">Libellé (étiquette)</span>
+            <input class="input" type="text" name="tag_label" bind:value={product.tag_label}/>
+          </label>
+        </fieldset>
 
-      <button class="btn btn-primary" type="submit">Enregistrer</button>
-    </form>
+        <button class="btn btn-primary" type="submit">Enregistrer</button>
+      </form>
+    </div>
   </main>
 </div>
